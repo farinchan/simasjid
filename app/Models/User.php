@@ -20,8 +20,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'photo',
+        'position',
         'email',
+        'phone',
+        'address',
         'password',
+        'last_login_at',
     ];
 
     /**
@@ -46,4 +51,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getPhoto()
+    {
+        return $this->photo ? asset('storage/' . $this->photo) : "https://ui-avatars.com/api/?background=15365F&color=C3A356&size=128&name=" . $this->name;
+    }
+
 }

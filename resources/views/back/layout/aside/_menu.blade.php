@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        @role('humas|super-admin')
+        @role('humas|pengurus')
             <div class="menu-item pt-5">
                 <div class="menu-content">
                     <span class="menu-heading fw-bold text-uppercase fs-7">Post</span>
@@ -104,9 +104,75 @@
             </div>
         @endrole
 
+        @role('humas|pengurus')
+            <div class="menu-item pt-5">
+                <div class="menu-content">
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Dakwah & Khutbah</span>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('back.ustadz.index')) active @endif"
+                    href="{{ route('back.ustadz.index') }}">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-fasten fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </span>
+                    <span class="menu-title">Data Ustadz</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('back.jumat-time.index')) active @endif"
+                    href="{{ route('back.jumat-time.index') }}">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-fasten fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </span>
+                    <span class="menu-title">Waktu Jum'at</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('back.kajian-time.index')) active @endif"
+                    href="{{ route('back.kajian-time.index') }}">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-fasten fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </span>
+                    <span class="menu-title">waktu Kajian</span>
+                </a>
+            </div>
+        @endrole
+
+        @role('humas|pengurus')
+            <div class="menu-item pt-5">
+                <div class="menu-content">
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Keuangan</span>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('back.finance.index')) active @endif"
+                    href="{{ route('back.finance.index') }}">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-fasten fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </span>
+                    <span class="menu-title">Keuangan</span>
+                </a>
+            </div>
+        @endrole
 
 
-        @role('super-admin')
+
+        @role('pengurus')
             <div class="menu-item pt-5">
                 <div class="menu-content"><span class="menu-heading fw-bold text-uppercase fs-7">Administrator</span>
                 </div>
@@ -125,8 +191,40 @@
                 </a>
             </div>
 
+            <div data-kt-menu-trigger="click"
+                class="menu-item menu-accordion @if (request()->routeIs('back.whatsapp.*')) here show @endif">
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-setting-4 fs-2"></i>
+                    </span>
+                    <span class="menu-title">Whatsapp API</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion">
+                    <div class="menu-item">
+                        <a class="menu-link @if (request()->routeIs('back.whatsapp.setting')) active @endif"
+                            href="{{ route('back.whatsapp.setting') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Pengaturan</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link @if (request()->routeIs('back.whatsapp.message')) active @endif"
+                            href="{{ route('back.whatsapp.message') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Kirim Pesan</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="menu-item">
-                <a class="menu-link @if (request()->routeIs('back.user.*')) active @endif" href="{{ route('back.user.index') }}">
+                <a class="menu-link @if (request()->routeIs('back.user.*')) active @endif"
+                    href="{{ route('back.user.index') }}">
                     <span class="menu-icon">
                         <i class="ki-duotone ki-profile-user fs-2">
                             <span class="path1"></span>
@@ -135,7 +233,7 @@
                             <span class="path4"></span>
                         </i>
                     </span>
-                    <span class="menu-title">Pengguna</span>
+                    <span class="menu-title">Pengurus & Jamaah</span>
                 </a>
             </div>
 

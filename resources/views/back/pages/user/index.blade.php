@@ -34,9 +34,8 @@
                                             data-placeholder="Select option" data-allow-clear="true"
                                             data-kt-user-table-filter="role" data-hide-search="true">
                                             <option></option>
-                                            <option value="super-admin">super-admin</option>
-                                            <option value="keuangan">keuangan</option>
-                                            <option value="editor">editor</option>
+                                            <option value="pengurus">Pengurus</option>
+                                            <option value="jamaah">Jama'ah</option>
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-end">

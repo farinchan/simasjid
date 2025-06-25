@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\DashboardController as BackDashboardController;
 use App\Http\Controllers\Back\NewsController as BackNewsController;
 use App\Http\Controllers\Back\PartnerLinkController as BackPartnerLinkController;
+use App\Http\Controllers\Back\UstadzController as BackUstadzController;
+use App\Http\Controllers\Back\JumatTimeController as BackJumatTimeController;
+use App\Http\Controllers\Back\KajianTimeController as BackKajianTimeController;
+use App\Http\Controllers\Back\FinanceController as BackFinanceController;
 use App\Http\Controllers\Back\UserController as BackUserController;
 use App\Http\Controllers\Back\MessageController as BackMessageController;
 use App\Http\Controllers\Back\SettingController as BackSettingController;
@@ -53,6 +57,10 @@ Route::prefix('back')->name('back.')->middleware('auth')->group(function () {
         Route::delete('/delete/{id}', [BackPartnerLinkController::class, 'destroy'])->name('destroy');
     });
 
+    Route::apiResource('ustadz', BackUstadzController::class)->names('ustadz');
+    Route::apiResource('jumat-time', BackJumatTimeController::class)->names('jumat-time');
+    Route::apiResource('kajian-time', BackKajianTimeController::class)->names('kajian-time');
+
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [BackUserController::class, 'index'])->name('index');
         Route::get('/create', [BackUserController::class, 'create'])->name('create');
@@ -62,10 +70,27 @@ Route::prefix('back')->name('back.')->middleware('auth')->group(function () {
         Route::delete('/delete/{id}', [BackUserController::class, 'destroy'])->name('destroy');
     });
 
+    Route::prefix('finance')->name('finance.')->group(function () {
+        Route::get('/', [BackFinanceController::class, 'index'])->name('index');
+        Route::get('/datatables', [BackFinanceController::class, 'datatables'])->name('datatables');
+        Route::get('/export', [BackFinanceController::class, 'export'])->name('export');
+
+        Route::post('/store', [BackFinanceController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [BackFinanceController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [BackFinanceController::class, 'destroy'])->name('destroy');
+
+        Route::post('/category', [BackFinanceController::class, 'categoryStore'])->name('category.store');
+    });
+
 
     Route::prefix('message')->name('message.')->group(function () {
         Route::get('/', [BackMessageController::class, 'index'])->name('index');
         Route::delete('/{id}', [BackMessageController::class, 'destroy'])->name('destroy');
+    });
+
+     Route::prefix('whatsapp')->name('whatsapp.')->group(function () {
+        Route::get('/setting', [App\Http\Controllers\Back\WhatsappController::class, 'setting'])->name('setting');
+        Route::get('/message', [App\Http\Controllers\Back\WhatsappController::class, 'message'])->name('message');
     });
 
     Route::prefix('setting')->name('setting.')->group(function () {
